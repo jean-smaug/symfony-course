@@ -24,6 +24,9 @@
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/" class="nav-link px-2 {{ app.request.attributes.get('_route') == "home" ? "text-white" : "text-secondary" }}">Accueil</a></li>
                         <li><a href="{{ path("article_index") }}" class="nav-link px-2 {{ app.request.attributes.get('_route') == "article_index" ? "text-white" : "text-secondary" }}">Articles</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path("admin_article_index") }}" class="nav-link px-2 {{ app.request.attributes.get('_route') starts with "admin_" ? "text-white" : "text-secondary" }}">Admin</a></li>
+                        {% endif %}
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -31,7 +34,11 @@
                     </form>
 
                     <div class="text-end">
-                        <button type="button" class="btn btn-warning">Connexion</button>
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path("app_logout") }}" type="button" class="btn btn-danger">Deconnexion</a>
+                        {% else %}
+                            <a href="{{ path("app_login") }}" type="button" class="btn btn-warning">Connexion</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
