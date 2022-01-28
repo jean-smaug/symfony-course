@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/articles', name: 'article')]
+    #[Route('/articles', name: 'article_index')]
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy([], ["date" => "DESC"]);
