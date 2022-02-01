@@ -13,6 +13,7 @@
 
         {% block javascripts %}
 
+            <script src="{{ asset("js/app.js") }}"></script>
             <script src="{{ asset("js/bootstrap.js") }}"></script>
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
@@ -30,7 +31,7 @@
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                        <input id="search" type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                     </form>
 
                     <div class="text-end">

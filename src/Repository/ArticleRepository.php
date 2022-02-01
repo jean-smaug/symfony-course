@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -30,6 +31,18 @@ class ArticleRepository extends ServiceEntityRepository
         ");
 
         return $query->getResult();
+    }
+
+    public function searchByTitle($search) {
+        $qb = $this->createQueryBuilder("article");
+
+        $query = $qb->where(
+            $qb->expr()->like("article.title", ":search")
+        )
+            ->setParameter("search", "%$search%")
+            ->getQuery();
+
+        return $query->getArrayResult();
     }
 
     // /**
