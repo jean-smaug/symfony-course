@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+    public function __construct()
+    {
+        $this->setDate(new \DateTime());
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

@@ -33,7 +33,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            CategoryFixtures::class
+            CategoryFixtures::class,
         ];
     }
 }

@@ -19,8 +19,17 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function findDemo() {
-        return "";
+    public function findAllAndJoinCategory() {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery("
+        SELECT article, category
+        FROM App\Entity\Article article
+        INNER JOIN article.category category
+        ORDER BY article.date DESC
+        ");
+
+        return $query->getResult();
     }
 
     // /**
